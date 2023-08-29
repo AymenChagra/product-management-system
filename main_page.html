@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Product Management System</h1>
+  <main>
+    <section class="input-section">
+      <div class="input-section-container">
+        <h2>Add new product(s)</h2>
+        <div class="input-section-container-grid">
+          <div>
+            <label for="name">Name/Ref</label>
+            <input id="name" type="text">
+          </div>
+          <div>
+            <label for="category">category/Type</label>
+            <input id="category" type="text">
+          </div>
+          <div>
+            <label for="wholesale-cost" >Wholesale cost ($)</label>
+            <input id="wholesale-cost" type="number" onkeyup="calculatePrice()">
+          </div>
+          <div>
+            <label for="profit-margin">Profit margin (%)</label>
+            <input id="profit-margin" type="number" value="0" onkeyup="calculatePrice()">
+          </div>
+          <div>
+            <label for="extra-costs">Extra costs ($)</label>
+            <input id="extra-costs" type="number" value="0" onkeyup="calculatePrice()">
+          </div>
+          <div>
+            <label for="tax">Tax rate (%)</label>
+            <input id="tax" type="number" value="0" onkeyup="calculatePrice()">
+          </div>
+          <div>
+            <label for="discount">Discount (%)</label>
+            <input id="discount" type="number" value="0" onkeyup="calculatePrice()">
+          </div>
+          <div>
+            <div class="price-text">Final price ($)</div>
+            <div class="price-value"></div>
+          </div>
+          <div>
+            <label for="quantity">Quantity bought</label>
+            <input id="quantity" type="number">
+          </div>
+        </div>
+        <button class="add-button">Add</button>
+        <h2>Find product(s)</h2>
+        <div class="search-part">
+          <input id="search" type="text" placeholder="search">
+          <div class="search-options">
+            <button id="search-by-name">search by name/REF</button>
+            <button id="search-by-price">search by price</button>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="output-section">
+      <div class="output-section-container">
+        <table>
+          <tr>
+            <th>id</th>
+            <th>name/ref</th>
+            <th>category</th>
+            <th class="tax-column">tax</th>
+            <th class="discount-column">discount</th>
+            <th class="ads-column">Ads</th>
+            <th>price</th>
+            <th>update</th>
+            <th>delete</th>
+          </tr>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>Samsung A14</td>
+              <td>mobile phone</td>
+              <td class="tax-column">5%</td>
+              <td class="discount-column">10%</td>
+              <td class="ads-column">50</td>
+              <td>2000</td>
+              <td> <button id="update-button">update</button></td>
+              <td> <button id="delete-button">delete</button></td>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td>Samsung A14</td>
+              <td>mobile phone</td>
+              <td class="tax-column">5%</td>
+              <td class="discount-column">10%</td>
+              <td class="ads-column">50</td>
+              <td>2000</td>
+              <td> <button id="update-button">update</button></td>
+              <td> <button id="delete-button">delete</button></td>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td>Samsung A14</td>
+              <td>mobile phone</td>
+              <td class="tax-column">5%</td>
+              <td class="discount-column">10%</td>
+              <td class="ads-column">50</td>
+              <td>2000</td>
+              <td> <button id="update-button">update</button></td>
+              <td> <button id="delete-button">delete</button></td>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td>Samsung A14</td>
+              <td>mobile phone</td>
+              <td class="tax-column">5%</td>
+              <td class="discount-column">10%</td>
+              <td class="ads-column">50</td>
+              <td>2000</td>
+              <td> <button id="update-button">update</button></td>
+              <td> <button id="delete-button">delete</button></td>
+            </tr>
+          </tbody>
+
+        </table>
+      </div>
+    </section>
+    <section class="results-section"></section>
+  </main>
+  <script src="main_page_script.js"></script>
+</body>
+</html>
