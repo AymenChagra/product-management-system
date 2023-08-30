@@ -7,7 +7,7 @@ let taxRate=document.querySelector("#tax");
 let discount=document.querySelector("#discount");
 let quantity=document.querySelector("#quantity");
 let price=document.querySelector(".price-value");
-const addButton=document.querySelector(".add-button")
+const addButton=document.querySelector(".add-button");
 
 function calculatePrice(){
   if (wholeSaleCost.value!=""){
@@ -92,7 +92,7 @@ function displayData(){
 function displayData(){
   let table="";
   i=0;
-  productsData.map(element=>{
+  productsData.forEach(element=>{
     table += `
     <tr>
       <td>${i+=1}</td>
