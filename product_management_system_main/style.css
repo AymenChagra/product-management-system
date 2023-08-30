@@ -146,17 +146,17 @@ th{
 th,td{
   padding: 5px;
 }
-#update-button, #delete-button{
+.update-button, .delete-button{
   width:80%;
   color: #fff;
   background: #094a07;
 }
 
-#delete-button{
+.delete-button{
   background: #b8140b;
 }
 @media(max-width:800px){
-  .tax-column, .discount-column,.ads-column{
+  .tax-column, .discount-column,.profit-column{
     display:none;
   }
   .input-section-container, .output-section-container{
