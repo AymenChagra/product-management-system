@@ -8,7 +8,11 @@ let discount=document.querySelector("#discount");
 let quantity=document.querySelector("#quantity");
 let price=document.querySelector(".price-value");
 const addButton=document.querySelector(".add-button");
+const deleteProductButton=document.querySelector(".delete-button");
+const updateProductButton=document.querySelector(".update-button");
+const deleteAllButton=document.querySelector(".delete-all-button")
 
+//This function starts calculating the price when entering the wholesalecost
 function calculatePrice(){
   if (wholeSaleCost.value!=""){
     let wholeSaleCostValue=parseInt(wholeSaleCost.value);
@@ -25,13 +29,13 @@ function calculatePrice(){
 
 
 let productsData;
-if (localStorage.productsData != null){
-  productsData=JSON.parse(localStorage.getItem("productsData"));
+if (localStorage.productsDataStorage != null){
+  productsData=JSON.parse(localStorage.getItem("productsDataStorage"));
 } else{
   productsData=[];
 }
 
-
+//This event is responsible for creating new products when clicking on add
 addButton.addEventListener("click",function(){
   let productInfo={
     name:name.value,
@@ -46,11 +50,15 @@ addButton.addEventListener("click",function(){
   }
   productsData.push(productInfo);
   console.log(productsData);
-  localStorage.setItem("productsData",JSON.stringify(productsData));
+  localStorage.setItem("productsDataStorage",JSON.stringify(productsData));
   clearInput();
-  displayData();
+  displayData(); // we have to display the new created product after clicking on add  
 })
+displayData()  //we have to display the data available in the local starage
 
+
+
+//This event is responsible for clearing the inputs after clicking on add
 function clearInput(){
   name.value="";
   category.value="";
@@ -64,8 +72,35 @@ function clearInput(){
 }
 
 
-displayData()
+//This function is responsible for displaying the created products 
+//using map instedad of for loop
+function displayData(){
+  let table="";
+  i=0;
+  productsData.forEach(element=>{
+    table += `
+    <tr>
+      <td>${i+1}</td>
+      <td>${element.name}</td>
+      <td>${element.category}</td>
+      <td class="tax-column">${element.taxRate}%</td>
+      <td class="discount-column">${element.discount}%</td>
+      <td class="profit-column">${element.profitMargin}%</td>
+      <td>$${element.price}</td>
+      <td> <button class="update-button">Update</button></td>
+      <td> <button class="delete-button" onclick="deleteData(${i})">Delete</button></td>
+    </tr>
+    `
+    i+=1;
+  })
+  document.querySelector("#tbody-content").innerHTML=table;
+  if(productsData.length>0){
+    deleteAllButton.style.display="block";
+  }
+}
 
+
+//using for loop
 /*
 function displayData(){
   let table="";
@@ -88,24 +123,19 @@ function displayData(){
 }
 */
 
-//using map instedad of for loop
-function displayData(){
-  let table="";
-  i=0;
-  productsData.forEach(element=>{
-    table += `
-    <tr>
-      <td>${i+=1}</td>
-      <td>${element.name}</td>
-      <td>${element.category}</td>
-      <td class="tax-column">${element.taxRate}%</td>
-      <td class="discount-column">${element.discount}%</td>
-      <td class="profit-column">${element.profitMargin}%</td>
-      <td>$${element.price}</td>
-      <td> <button class="update-button">update</button></td>
-      <td> <button class="delete-button">delete</button></td>
-    </tr>
-    `
-  })
-  document.querySelector("#tbody-content").innerHTML=table;
+
+function deleteData(i){
+  productsData.splice(i, 1);
+  localStorage.productsDataStorage=JSON.stringify(productsData);
+  displayData(); //we have to dispalay the new data after deleting an element
 }
+console.log(productsData.length);
+
+
+deleteAllButton.addEventListener("click",function(){
+    productsData.splice(0);  // prodctsDta is the array that carries data           
+    localStorage.productsDataStorage=JSON.stringify(productsData);
+    deleteAllButton.style.display="none";
+    displayData();
+})
+

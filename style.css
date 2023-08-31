@@ -14,6 +14,10 @@ h1{
   font-family: "poopins", sans-serif;
   color: #fff;
 }
+main{
+  display: flex;
+  flex-direction: column;
+}
 h2{
   font-size: 20px;
   margin-bottom: 30px;
@@ -104,6 +108,7 @@ button{
   border: none;
   border-radius: 20px;
   transition: all 0.2s;
+  color: #fff;
 }
 .search-part{
   display: flex;
@@ -131,9 +136,6 @@ button{
   min-width: 150px;
   padding: 4px;
   background: #470053;
-  border-radius: 20px;
-  color: #fff;
-  transition: all 0.2s;
 }
 table{
   width:100%;
@@ -148,12 +150,22 @@ th,td{
 }
 .update-button, .delete-button{
   width:80%;
-  color: #fff;
   background: #094a07;
+  padding: 4px;;
 }
 
 .delete-button{
   background: #b8140b;
+}
+.delete-all-button{
+  box-sizing: border-box;
+  background:#b8140b;
+  color: #fff;
+  width: 30%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 60px;
+  display: none;
 }
 @media(max-width:800px){
   .tax-column, .discount-column,.profit-column{
