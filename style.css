@@ -131,7 +131,7 @@ button{
   width:65%;
   justify-content: center;
 }
-#search-by-name, #search-by-price{
+#search-by-name, #search-by-category{
   width: 40%;
   min-width: 150px;
   padding: 4px;
