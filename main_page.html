@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
 <body>
   <h1>Product Management System</h1>
@@ -50,13 +51,16 @@
             <input id="quantity" type="number" value="1" min="1" >
           </div>
         </div>
-        <button class="add-button">Add</button>
+        <button class="add-button">Add<i class="fa-solid fa-plus"></i></button>
         <h2>Find product(s)</h2>
         <div class="search-part">
-          <input id="search" type="text" placeholder="search">
+          <div class="search-bar-container">
+            <input id="search" type="text" placeholder="Search" onkeyup="findElements()">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </div>
           <div class="search-options">
-            <button id="search-by-name">Search by name/Ref</button>
-            <button id="search-by-category">Search by category</button>
+            <button id="search-by-name" onclick="getSearchType(this.id)">Search by name/Ref</button>
+            <button id="search-by-category" onclick="getSearchType(this.id)">Search by category</button>
           </div>
         </div>
       </div>

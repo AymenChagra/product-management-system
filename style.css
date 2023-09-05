@@ -10,8 +10,9 @@ body{
 }
 h1{
   text-align: center;
-  margin-top:20px;
+  margin-top:30px;
   font-family: "poopins", sans-serif;
+  font-size: 26px;
   color: #fff;
 }
 main{
@@ -87,6 +88,20 @@ input{
 input:focus{
   background: #000;
 }
+button{
+  height: 30px;
+  cursor: pointer;
+  border: none;
+  border-radius: 20px;
+  transition: all 0.2s;
+  color: #fff;
+}
+button:hover{
+  opacity:0.9;
+}
+button:active{
+  opacity:0.7;
+}
 .add-button{
   width: 30%;
   min-width: 150px;
@@ -96,34 +111,32 @@ input:focus{
   background: #470053;
   color: #fff;
 }
-button:hover{
-  opacity:0.9;
-}
-button:active{
-  opacity:0.7;
-}
-button{
-  height: 30px;
-  cursor: pointer;
-  border: none;
-  border-radius: 20px;
-  transition: all 0.2s;
-  color: #fff;
-}
 .search-part{
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-bottom: 10px;
 }
-
-#search{
+.search-bar-container{
   width: 65%;
   height: 40px;
   margin-bottom: 20px;
+  position: relative;
+}
+#search{
+  width: 100%;
+  height: 100%;
+  font-size: 14px;
+  padding-left: 50px;
 }
 #search::placeholder{
-  font-size: 16px;
+  font-size: 14px;
+}
+.fa-magnifying-glass{
+  position: absolute;
+  top:13px;
+  left:12px;
+  font-size: 14px;
 }
 .search-options{
   display: flex;
@@ -149,11 +162,10 @@ th,td{
   padding: 5px;
 }
 .update-button, .delete-button{
-  width:80%;
+  width:100%;
+  max-width: 80px;
   background: #094a07;
-  padding: 4px;;
 }
-
 .delete-button{
   background: #b8140b;
 }
@@ -167,11 +179,27 @@ th,td{
   margin-bottom: 60px;
   display: none;
 }
-@media(max-width:800px){
+@media(max-width:850px){
+  body{
+    font-size: 14px;
+  }
+  button{
+    font-size: 12px;
+  }
+  h1{
+    font-size: 24px;
+  }
+  h2{
+    font-size: 18px;
+  }
   .tax-column, .discount-column,.profit-column{
     display:none;
   }
   .input-section-container, .output-section-container{
     width:85%;
   }
+}
+.fa-plus{
+  margin-left: 5px;
+  font-size: 10px;
 }

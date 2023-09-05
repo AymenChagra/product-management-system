@@ -11,9 +11,12 @@ const addButton=document.querySelector(".add-button");
 const deleteProductButton=document.querySelector(".delete-button");
 const updateProductButton=document.querySelector(".update-button");
 const deleteAllButton=document.querySelector(".delete-all-button");
+const searchByNameButton=document.querySelector("#search-by-name");
+const searchByCategoryButton=document.querySelector("#search-by-category");
+const searchBar=document.querySelector("#search")
 let theme = "creating"; //this variable is necessary to manage the add and update 
 let tmp;       //this variable is necessary to store the temperay value of the counter i
-
+let searchType="name/ref";
 
 //This function is responsible for calculating the price 
 //It starts when entering the wholesalecost
@@ -149,4 +152,39 @@ function updateData(i){
   quantity.disabled=true;
   quantity.style.cursor="no-drop";
   quantity.value="";
+}
+
+
+//This function gets the search type (by name or by category)
+function getSearchType(id){
+  if(id==="search-by-name"){
+    searchType="name/ref";
+  }else{
+    searchType="category";
+  }
+  searchBar.placeholder="Search by "+ searchType;
+  searchBar.focus();
+  console.log(searchType);
+}
+
+//This function allows search for elements according to the type of search
+function findElements(){
+  let searchArray= [];
+  productsData=JSON.parse(localStorage.getItem("productsDataStorage"));              //restoring the original data
+  const value=searchBar.value.toLowerCase();                                         //getting the input values
+  productsData.map(ele=>{                                                            //creating a loop over the data to find the input values
+    if (searchType==="name/ref"){
+      if(ele.name.toLowerCase().includes(value)){
+        searchArray.push(ele);                                                      //if an element matches the data it will be added to the findElements array
+      }
+    } 
+    else{
+      if(ele.category.toLowerCase().includes(value)){
+        searchArray.push(ele);
+      }
+    }
+  })
+  productsData=searchArray;                                                        //replacing the original data temperary with by the data that the user is searching for 
+  console.log(productsData);
+  displayData();                                                                   //displaying the data that the user is searching for
 }
