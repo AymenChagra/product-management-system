@@ -8,6 +8,8 @@ let discount=document.querySelector("#discount");
 let quantity=document.querySelector("#quantity");
 let price=document.querySelector(".price-value");
 const addButton=document.querySelector(".add-button");
+const deleteProductButton=document.querySelector(".delete-button");
+const updateProductButton=document.querySelector(".update-button");
 const deleteAllButton=document.querySelector(".delete-all-button");
 const searchByNameButton=document.querySelector("#search-by-name");
 const searchByCategoryButton=document.querySelector("#search-by-category");
@@ -17,13 +19,6 @@ let tmp;       //this variable is necessary to store the temperay value of the c
 let searchType="name/ref";
 let resultsCount=document.querySelector(".count");
 let noResult=document.querySelector(".no-result");
-const deleteAllDialog= document.querySelector("#delete-all-dialog");
-const cancelDeleteAllBtn=document.querySelector("#cancel-delete-all");
-const deleteAllDefinitelyBtn=document.querySelector("#delete-all-definitely");
-const deleteItemDialog= document.querySelector("#delete-item-dialog");
-const cancelDeleteItem=document.querySelector("#cancel-delete-item");
-const deleteProductdefinitely=document.querySelector("#delete-item-definitely");
-
 
 //This function is responsible for calculating the price 
 //It starts when entering the wholesalecost
@@ -82,6 +77,7 @@ addButton.addEventListener("click",function(){
 displayData()  //we have to display the data available in the local starage
 
 
+
 //This event is responsible for clearing the inputs after clicking on add
 function clearInput(){
   name.value="";
@@ -111,30 +107,36 @@ function displayData(){
       <td class="profit-column">${element.profitMargin}%</td>
       <td>$${element.price}</td>
       <td> <button class="update-button" onclick="updateData(${i})">Update</button></td>
-      <td> <button class="delete-button" onclick="showDeleteDialog(${i})">Delete</button></td>
+      <td> <button class="delete-button" onclick="deleteData(${i})">Delete</button></td>
     </tr>
     `
     i+=1;
   })
   document.querySelector("#tbody-content").innerHTML=table;
-  noResultHandling()
-}
-
-function noResultHandling(){
-  if(productsData.length>0){                                                                       //When there are available products/results to be displayed
+  if(productsData.length>0){
     deleteAllButton.style.display="block";
     noResult.style.display="none";
-  }else{                                                                                           //When there no available products/results to be displayed
+  }else{
     deleteAllButton.style.display="none";
-    if (searchBar.value==""){
-      noResult.textContent="No products yet";
-    }else{
-      noResult.textContent="No products available with this search.";
-    }
     noResult.style.display="block";
   }
 }
 
+//This function is responsible for deleting a single product
+function deleteData(i){
+  productsData.splice(i, 1);
+  localStorage.productsDataStorage=JSON.stringify(productsData);
+  displayData(); //we have to dispalay the new data after deleting an element
+}
+
+
+//This function deletes all the products
+deleteAllButton.addEventListener("click",function(){
+    productsData.splice(0);  // prodctsDta is the array that carries data           
+    localStorage.productsDataStorage=JSON.stringify(productsData);
+    deleteAllButton.style.display="none";
+    displayData();
+})
 
 
 //This function is responsible for updating the products  
@@ -188,52 +190,7 @@ function findElements(){
   resultsCount.style.visibility="visible";
   displayData();                                                                   //displaying the data that the user is searching for
   productsData=JSON.parse(localStorage.getItem("productsDataStorage"));              //restoring the original data
-  
 }
-
-
-//The following functions are responsible for the delete all part
-
-deleteAllButton.onclick = function() {
-  deleteAllDialog.showModal();
-}
-window.onclick = function(event) {
-  if (event.target == deleteAllDialog) {
-    deleteAllDialog.close();
-  } else if (event.target == deleteItemDialog) {
-    deleteItemDialog.close();
-  }
-}
-cancelDeleteAllBtn.onclick=function() {
-    deleteAllDialog.close();
-}
-deleteAllDefinitelyBtn.onclick=function(){
-  productsData.splice(0);  // prodctsDta is the array that carries data           
-  localStorage.productsDataStorage=JSON.stringify(productsData);
-  deleteAllButton.style.display="none";
-  displayData();
-  deleteAllDialog.close();
-}
-
-
-
-//The following functions are responsible for deleteting a single product
-function showDeleteDialog(i) {
-  deleteItemDialog.showModal();
-  tmp=i;
-}
-cancelDeleteItem.onclick=function() {
-  deleteItemDialog.close();
-}
-deleteProductdefinitely.onclick=function(temp){
-  productsData.splice(tmp, 1);
-  localStorage.productsDataStorage=JSON.stringify(productsData);
-  displayData(); //we have to dispalay the new data after deleting an element
-  deleteItemDialog.close();
-}
-
-
-
 
 
 

@@ -1,0 +1,34 @@
+/* Optional CSS styles for the dialog */
+dialog {
+  width: 35%;
+  min-width: 250px;
+  padding: 20px;
+  background: #222;
+  color:#919191;
+  border:1px solid grey;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Optional style for the overlay background */
+dialog::backdrop {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.dialog-heading{
+  margin-bottom: 15px;
+  font-weight: 600;
+  color: #fff;
+}
+dialog p{
+  margin-bottom: 12px;
+}
+.dialog-options{
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+.cancel-button, .delete-definitely-button{
+  width:25%;
+  height: 25px;
+  min-width: 50px;
+}

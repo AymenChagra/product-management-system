@@ -1,11 +1,19 @@
+/*all elements should be intiated with a margin 0 except the dialogs
+beacause the dialogs by default are positioned at the center*/
 *{
   margin: 0px;
   padding: 0px;
   font-family: system-ui, sans-serif;
 }
+dialog{
+  margin: auto;
+  padding: auto;
+}
+
+
 body{
   background: #222;
-  color:#919191;;
+  color:#919191;
   font-size: 16px;
 }
 h1{
@@ -93,14 +101,17 @@ button{
   cursor: pointer;
   border: none;
   border-radius: 20px;
-  transition: all 0.2s;
+  transition: all 0.15s;
+  background: #470053;
   color: #fff;
 }
 button:hover{
-  opacity:0.9;
+  filter: brightness(1.1);
+  letter-spacing: 0.5px;
 }
 button:active{
-  opacity:0.7;
+  filter: brightness(1.2);
+  letter-spacing: 0.5px;
 }
 .add-button{
   width: 30%;
@@ -138,6 +149,13 @@ button:active{
   left:12px;
   font-size: 14px;
 }
+.count{
+  position: absolute;
+  top:10px;
+  right:-30px;
+  font-size: 14px;
+  visibility: hidden;
+}
 .search-options{
   display: flex;
   gap:16px;
@@ -159,7 +177,7 @@ th{
   text-transform: uppercase;
 }
 th,td{
-  padding: 5px;
+  padding: 6px 5px;
 }
 .update-button, .delete-button{
   width:100%;
@@ -173,11 +191,28 @@ th,td{
   box-sizing: border-box;
   background:#b8140b;
   color: #fff;
-  width: 30%;
+  width: 28%;
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 60px;
   display: none;
+}
+.fa-plus {
+  margin-left: 5px;
+  font-size: 10px;
+}
+.fa-arrow-up-long{
+  margin-left: 5px;
+  font-size: 10px;
+}
+.fa-trash{
+  margin-left: 8px;
+  font-size: 12px;
+}
+.no-result{
+  text-align: center;
+  margin: 20px;
+  display:none;
 }
 @media(max-width:850px){
   body{
@@ -198,8 +233,4 @@ th,td{
   .input-section-container, .output-section-container{
     width:85%;
   }
-}
-.fa-plus{
-  margin-left: 5px;
-  font-size: 10px;
 }
